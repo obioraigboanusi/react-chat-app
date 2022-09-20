@@ -3,16 +3,19 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { Container } from "./Chat";
 import { signIn } from "../application/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 function SignIn() {
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (username) {
       dispatch(signIn({ username }));
       setUsername("");
+      navigate("/chat");
     }
   };
 
