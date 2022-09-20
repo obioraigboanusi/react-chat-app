@@ -1,32 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [
-  {
-    id: 1,
-    message: " Lorem ipsum dolor sit amet.",
-    isAuthor: false,
-    author: "Obiora",
-  },
-  {
-    id: 2,
-    message: " Lorem ipsum dolor sit amet.",
-    isAuthor: false,
-    author: "Maureen",
-  },
-  {
-    id: 3,
-    message: " Lorem ipsum dolor sit amet.",
-    isAuthor: true,
-    author: "Chike",
-  },
-];
+const initialState = [];
 
 export const chatSlice = createSlice({
   name: "chats",
   initialState,
   reducers: {
     addNewChat: (state, action) => {
-      state.push(action.payload.chat);
+      state.push(action.payload);
     },
     loadInitialChats: (state, action) => {
       state = action.payload.chats;

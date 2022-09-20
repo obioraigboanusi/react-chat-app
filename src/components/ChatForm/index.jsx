@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { addNewChat } from "../../application/chat/chatSlice";
+import { useChannelContext } from "../../application/channelContext";
 
 function ChatForm() {
   const [message, setMessage] = useState("");
-  const dispatch = useDispatch();
+  const { postChat } = useChannelContext();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (message) {
@@ -15,11 +14,7 @@ function ChatForm() {
         isAuthor: false,
         author: "Obiora",
       };
-      dispatch(
-        addNewChat({
-          chat,
-        })
-      );
+      postChat(chat);
     }
   };
   return (
