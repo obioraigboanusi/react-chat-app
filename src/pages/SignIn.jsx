@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Container } from "./Chat";
 import { signIn } from "../application/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import withAuth from "../utils/HOC/withAuth";
 
 function SignIn() {
   const dispatch = useDispatch();
@@ -85,4 +86,4 @@ const StyledSignInContainer = styled(Container)`
     }
   }
 `;
-export default SignIn;
+export default withAuth(SignIn);

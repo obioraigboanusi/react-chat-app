@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ChatForm from "../components/ChatForm";
 import ChatList from "../components/ChatList";
+import withAuth from "../utils/HOC/withAuth";
 
 function Chat() {
   return (
@@ -26,4 +27,4 @@ const ChatContainer = styled(Container)`
     flex-grow: 1;
   }
 `;
-export default Chat;
+export default withAuth(Chat);
