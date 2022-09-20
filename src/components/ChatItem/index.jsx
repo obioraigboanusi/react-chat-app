@@ -2,7 +2,7 @@ import moment from "moment/moment";
 import React from "react";
 import styled, { css } from "styled-components";
 
-function ChatItem({ message, isAuthor, author }) {
+function ChatItem({ message, isAuthor, author, createdAt }) {
   return (
     <StyledChatItem isAuthor={isAuthor}>
       <div>
@@ -13,7 +13,7 @@ function ChatItem({ message, isAuthor, author }) {
         <StyledMessage isAuthor={isAuthor}>{message}</StyledMessage>
       </div>
       <div>
-        <p className="timestamp">{moment().calendar()}</p>
+        <p className="timestamp">{moment(createdAt).calendar()}</p>
       </div>
     </StyledChatItem>
   );

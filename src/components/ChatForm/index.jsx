@@ -1,22 +1,28 @@
+import moment from "moment";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 import { useChannelContext } from "../../application/channelContext";
 
 function ChatForm() {
   const [message, setMessage] = useState("");
   const { postChat } = useChannelContext();
+  const { username } = useSelector((state) => state.auth);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (message) {
       const chat = {
-        id: Date.now(),
-        message: " Lorem ipsum dolor sit amet.",
-        isAuthor: false,
-        author: "Obiora",
+        message,
+        author: username,
+        id: uuidv4(),
+        createdAt: moment().format(),
       };
       postChat(chat);
     }
   };
+  
   return (
     <StyledForm>
       <form onSubmit={handleSubmit}>
@@ -35,6 +41,7 @@ function ChatForm() {
     </StyledForm>
   );
 }
+
 const StyledForm = styled.div`
   background-color: #6a1afe;
   padding: 1rem;
@@ -58,4 +65,5 @@ const StyledForm = styled.div`
     border: none;
   }
 `;
+
 export default ChatForm;
