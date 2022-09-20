@@ -1,29 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import ChatItem from "../ChatItem";
 
-function ChatList({
-  chats = [
-    {
-      id: 1,
-      message: " Lorem ipsum dolor sit amet.",
-      isAuthor: false,
-      author: "Obiora",
-    },
-    {
-      id: 2,
-      message: " Lorem ipsum dolor sit amet.",
-      isAuthor: false,
-      author: "Maureen",
-    },
-    {
-      id: 3,
-      message: " Lorem ipsum dolor sit amet.",
-      isAuthor: true,
-      author: "Chike",
-    },
-  ],
-}) {
+function ChatList() {
+  const chats = useSelector((state) => state.chats);
   return (
     <div>
       <StyledList>
