@@ -20,9 +20,10 @@ function ChatForm() {
         createdAt: moment().format(),
       };
       postChat(chat);
+      setMessage("");
     }
   };
-  
+
   return (
     <StyledForm>
       <form onSubmit={handleSubmit}>
@@ -35,7 +36,9 @@ function ChatForm() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <button type="submit">Send</button>
+          <button type="submit" disabled={!message}>
+            Send
+          </button>
         </div>
       </form>
     </StyledForm>
@@ -63,6 +66,11 @@ const StyledForm = styled.div`
     padding-inline: 20px;
     border-radius: 20px;
     border: none;
+    &:disabled {
+      background-color: lightgray;
+      color: white;
+      cursor: not-allowed;
+    }
   }
 `;
 
