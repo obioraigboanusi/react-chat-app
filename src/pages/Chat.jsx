@@ -11,15 +11,17 @@ function Chat() {
     </ChatContainer>
   );
 }
-const ChatContainer = styled.div`
+export const Container = styled.div`
   width: 100%;
   max-width: 500px;
   margin-inline: auto;
+`;
+
+const ChatContainer = styled(Container)`
   height: 100vh;
   background-color: #fff;
   display: flex;
   flex-direction: column;
-
   & > div:first-of-type {
     flex-grow: 1;
   }
