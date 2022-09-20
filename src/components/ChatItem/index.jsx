@@ -9,9 +9,9 @@ function ChatItem({ message, isAuthor, author, createdAt }) {
         {!isAuthor && <Avatar>{author.slice(0, 2).toUpperCase()}</Avatar>}
         <span>{isAuthor ? "You" : author}</span>
       </div>
-      <div>
-        <StyledMessage isAuthor={isAuthor}>{message}</StyledMessage>
-      </div>
+
+      <StyledMessage isAuthor={isAuthor}>{message}</StyledMessage>
+
       <div>
         <p className="timestamp">{moment(createdAt).calendar()}</p>
       </div>
@@ -38,15 +38,17 @@ const StyledChatItem = styled.div`
     display: flex;
     align-items: center;
     flex-direction: ${({ isAuthor }) => isAuthor && "row-reverse"};
-    margin-bottom: 3px;
+    /* margin-bottom: 3px; */
   }
   span {
-    margin: 10px;
+    margin-inline: 10px;
+    margin-bottom: 3px;
     font-size: 0.8rem;
   }
   p.timestamp {
     font-size: 0.7rem;
     margin-top: 3px;
+    margin-bottom: 0;
   }
 `;
 const Avatar = styled.div`
@@ -66,6 +68,7 @@ const StyledMessage = styled.p`
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 3px;
+  max-width: 85%;
   ${({ isAuthor }) =>
     isAuthor
       ? css`
