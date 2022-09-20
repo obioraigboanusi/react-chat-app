@@ -1,9 +1,10 @@
 import Chat from "./pages/Chat";
+import SignIn from "./pages/SignIn";
 
 function App() {
   return (
     <div className="App">
-      <Chat />
+      <SignIn />
     </div>
   );
 }
