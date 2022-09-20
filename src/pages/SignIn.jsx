@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { Container } from "./Chat";
+import { signIn } from "../application/auth/authSlice";
 
 function SignIn() {
+  const dispatch = useDispatch();
+  const [username, setUsername] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (username) {
+      dispatch(signIn({ username }));
+      setUsername("");
+    }
   };
+
   return (
     <StyledSignInContainer>
       <div>
@@ -14,7 +24,13 @@ function SignIn() {
           <p>Sign in to Continue</p>
         </header>
         <form onSubmit={handleSubmit}>
-          <input type="text" name="user-name" placeholder="Username" />
+          <input
+            type="text"
+            name="user-name"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
           <button type="submit">Sign in</button>
         </form>
       </div>
