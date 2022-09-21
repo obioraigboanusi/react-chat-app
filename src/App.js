@@ -1,19 +1,22 @@
 import { Route, Routes } from "react-router-dom";
-import Chat from "./pages/Chat";
 import { Provider } from "react-redux";
-import SignIn from "./pages/SignIn";
-import { store } from "./application/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "./application/store";
 import { ChannelContextProvider } from "./application/channelContext";
+import Chat from "./pages/Chat";
+import SignIn from "./pages/SignIn";
 
 function App() {
   return (
     <Provider store={store}>
-      <ChannelContextProvider>
-        <Routes>
-          <Route path="/" element={<SignIn />} />
-          <Route path="/chat" element={<Chat />} />
-        </Routes>
-      </ChannelContextProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <ChannelContextProvider>
+          <Routes>
+            <Route path="/" element={<SignIn />} />
+            <Route path="/chat" element={<Chat />} />
+          </Routes>
+        </ChannelContextProvider>
+      </PersistGate>
     </Provider>
   );
 }

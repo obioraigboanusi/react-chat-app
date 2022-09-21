@@ -36,9 +36,11 @@ function ChatForm() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <button type="submit" disabled={!message}>
-            Send
-          </button>
+          {message && (
+            <button type="submit" disabled={!message}>
+              Send
+            </button>
+          )}
         </div>
       </form>
     </StyledForm>
