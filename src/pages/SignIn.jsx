@@ -35,7 +35,9 @@ function SignIn() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          <button type="submit">Sign in</button>
+          <button disabled={!username} type="submit">
+            Sign in
+          </button>
         </form>
       </div>
     </StyledSignInContainer>
@@ -72,7 +74,7 @@ const StyledSignInContainer = styled(Container)`
   }
   input,
   button {
-    height: 40px;
+    height: 50px;
     margin-bottom: 1rem;
     padding-inline: 1rem;
     border-radius: 4px;
@@ -83,6 +85,9 @@ const StyledSignInContainer = styled(Container)`
     border: none;
     &:hover {
       background-color: #145aa0;
+    }
+    &:disabled{
+      background-color: #808080;
     }
   }
 `;
