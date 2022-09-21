@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { Container } from "./Chat";
+import { signIn } from "../application/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import withAuth from "../utils/HOC/withAuth";
 
 function SignIn() {
+  const dispatch = useDispatch();
+  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (username) {
+      dispatch(signIn({ username }));
+      setUsername("");
+      navigate("/chat");
+    }
   };
+
   return (
     <StyledSignInContainer>
       <div>
@@ -14,8 +28,16 @@ function SignIn() {
           <p>Sign in to Continue</p>
         </header>
         <form onSubmit={handleSubmit}>
-          <input type="text" name="user-name" placeholder="Username" />
-          <button type="submit">Sign in</button>
+          <input
+            type="text"
+            name="user-name"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <button disabled={!username} type="submit">
+            Sign in
+          </button>
         </form>
       </div>
     </StyledSignInContainer>
@@ -52,7 +74,7 @@ const StyledSignInContainer = styled(Container)`
   }
   input,
   button {
-    height: 40px;
+    height: 50px;
     margin-bottom: 1rem;
     padding-inline: 1rem;
     border-radius: 4px;
@@ -64,6 +86,9 @@ const StyledSignInContainer = styled(Container)`
     &:hover {
       background-color: #145aa0;
     }
+    &:disabled{
+      background-color: #808080;
+    }
   }
 `;
-export default SignIn;
+export default withAuth(SignIn);
