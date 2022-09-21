@@ -2,11 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import ChatForm from "../components/ChatForm";
 import ChatList from "../components/ChatList";
+import Header from "../components/Header/Header";
 import withAuth from "../utils/HOC/withAuth";
 
 function Chat() {
   return (
     <ChatContainer>
+      <Header />
       <ChatList />
       <ChatForm />
     </ChatContainer>
