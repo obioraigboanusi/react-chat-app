@@ -4,7 +4,7 @@ import styled from "styled-components";
 import useScrollChat from "../../utils/Hooks/useScrollChat";
 import ChatItem from "../ChatItem";
 
-const chatPerPage = 27;
+const chatPerPage = 25;
 
 function ChatList() {
   const { chats, auth } = useSelector((state) => state);
