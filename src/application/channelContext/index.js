@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addNewChat } from "../chat/chatSlice";
 
 const ChannelContext = createContext(null);
@@ -11,6 +11,7 @@ const ChannelContextProvider = ({ children }) => {
   const postChat = useCallback((chat) => {
     channel.postMessage(chat);
     dispatch(addNewChat(chat));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -21,6 +22,7 @@ const ChannelContextProvider = ({ children }) => {
     return () => {
       channel.close();
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
